@@ -47,7 +47,10 @@ public class Order implements Serializable {
 	@OneToOne(mappedBy="order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
-	public Order() {}
+	@ManyToOne
+	private ServiceProvider serviceProvider;
+	
+		public Order() {}
 
 	public Order(Long id, Instant moment,OrderStatus orderStatus , User client) {
 		super();
@@ -120,6 +123,15 @@ public class Order implements Serializable {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+	
+	public ServiceProvider getServiceProvider() {
+		return serviceProvider;
+	}
+
+	public void setServiceProvider(ServiceProvider serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -137,9 +149,6 @@ public class Order implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
 	
 
 }
